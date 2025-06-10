@@ -7,6 +7,7 @@ import verifyToken from "../middleware/auth";
 import sendEmail from "./sendEmail";
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
+console.log("stripe key is:", stripe);
 
 const router = express.Router();
 
@@ -190,6 +191,7 @@ router.post(
                 <p style="margin: 0;"><strong>Check-In:</strong> ${new Date(req.body.checkIn).toDateString()}</p>
                 <p style="margin: 0;"><strong>Check-Out:</strong> ${new Date(req.body.checkOut).toDateString()}</p>
                 <p style="margin: 0;"><strong>Total Cost:</strong> ₹${parseFloat(req.body.totalCost).toFixed(2)}</p>
+                <p style="margin: 0;"><strong>Total Cost:</strong> ${(req.params.paymentIntentId)}</p>
               </div>
               <p style="color: #555;">Thank you for choosing HoliStay. We wish you a wonderful stay!</p>
             </div>
